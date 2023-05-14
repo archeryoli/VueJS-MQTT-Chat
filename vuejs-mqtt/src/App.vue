@@ -53,9 +53,7 @@ export default defineComponent({
     }
   },
   created(){
-    this.mqttClient.on('connect', () => {
-      console.log("connected");
-    })
+    
   },
   methods: {
     sendMessage(msg=''){
@@ -81,7 +79,11 @@ export default defineComponent({
 
       clickedElement.parentElement!.style.background = "#f00";
 
-      this.mqttClient = mqtt.connect('mqtts://7474707a29f3455eb46105db5cd34323.s2.eu.hivemq.cloud:8884') as Client
+      this.mqttClient = mqtt.connect('mqtts://7474707a29f3455eb46105db5cd34323.s2.eu.hivemq.cloud:8884') as Client;
+
+      this.mqttClient.on('connect', () => {
+        console.log("connected");
+      })
 /*
       this.options.clientId = this.clientId;
 
