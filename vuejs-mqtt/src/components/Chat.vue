@@ -1,6 +1,10 @@
 <template>
     <!--Div für die Darstellung aller Chats-->
-    <div id="chat"></div>
+    <div id="chat">
+        <message-component v-for="m in messages" 
+            :userName="m.clientId" :topic="m.topic" :message="m.text" :isOwnMessage="m.clientId == clientId" :key="m.clientId">
+        </message-component>
+    </div>
     <div>
         <input name="sendMessage" placeholder="Nachricht" v-model="message"/>
         <button @click="sendClick">Send</button>
@@ -8,9 +12,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { Message } from '../Models/Message';
+import { PropType, defineComponent } from 'vue'
+import MessageComponent from './MessageComponent.vue';
 
 export default defineComponent({
+  components: { MessageComponent },
     setup() {
 
     },
@@ -22,14 +29,19 @@ export default defineComponent({
     methods: {
         sendClick(e: Event){
             this.$emit("send", this.message)
+            console.log(this.clientId);
         }
-    }
+    },
+    props:{
+        messages: Array as PropType<Message[]>,
+        clientId: String
+    },
 })
 </script>
 
 <style scoped>
     #chat{
-        height: 300px;
+        height: 600px;
         border: 1px solid black;
         width: 50%;
         margin: auto;

@@ -37,5 +37,8 @@
   ],
   "exclude": [
     "node_modules"
+  ],
+  "files": [
+        "./node_modules/@types/paho-mqtt/index.d.ts"
   ]
 }
