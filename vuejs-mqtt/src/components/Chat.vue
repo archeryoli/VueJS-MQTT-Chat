@@ -6,7 +6,7 @@
         </message-component>
     </div>
     <div>
-        <input name="sendMessage" placeholder="Nachricht" v-model="message"/>
+        <input name="sendMessage" placeholder="Nachricht" v-model="message" @keypress.enter="sendClick"/>
         <button @click="sendClick">Send</button>
     </div>
 </template>
@@ -17,10 +17,7 @@ import { PropType, defineComponent } from 'vue'
 import MessageComponent from './MessageComponent.vue';
 
 export default defineComponent({
-  components: { MessageComponent },
-    setup() {
-
-    },
+    components: { MessageComponent },
     data(){
         return {
             message: "",
@@ -30,6 +27,7 @@ export default defineComponent({
         sendClick(e: Event){
             this.$emit("send", this.message)
             console.log(this.clientId);
+            this.message = "";
         }
     },
     props:{

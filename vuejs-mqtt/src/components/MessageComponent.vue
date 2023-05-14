@@ -41,6 +41,7 @@ export default defineComponent ({
     }
     #topicParagraph{
         font-size: small;
+        text-align: end;
     }
     .ownMessage{
         border: 1px solid black;

@@ -2,6 +2,7 @@
   "dependencies": {
     "@types/mqtt": "^2.5.0",
     "mqtt": "^4.3.7",
+    "paho-mqtt": "^1.1.0",
     "vue": "^3.2.47",
     "vuejs": "^3.0.1"
   }
